@@ -27,7 +27,7 @@ body {
             rgba(101, 0, 163, 0.9),
             rgba(24, 120, 175, 0.9)
         ),
-        url(.images/george-pagan-iii-BB4teVwxm5k-unsplash.jpg);
+        url(./images/george-pagan-iii-BB4teVwxm5k-unsplash.jpg);
 }
 
 .first__heading {
@@ -95,6 +95,10 @@ body {
     font-weight: 600;
     font-size: 35px;
     margin-bottom: 10px;
+}
+
+.stat__number--limit {
+    color: red;
 }
 
 .second__heading {
