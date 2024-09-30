@@ -4,7 +4,27 @@ const xNumEl = document.querySelector(".stat__number--x");
 const linkedInNumEl = document.querySelector(".stat__number--linkedin");
 const wordsNumEl = document.querySelector(".stat__number--words");
 
-function updateChars() {
+const InputHandler = () => {
+  // check for invalid / malicious content
+  if (textareaEl.value.includes("<script>")) {
+    alert("You can't use that");
+    textareaEl.value = textareaEl.value.replace("<script>", "");
+  }
+
+  //update number of chars
+  UpdateChars();
+
+  //update number of chars
+  UpdateX();
+
+  //update number of chars
+  UpdateLinkedIn();
+
+  //update number of chars
+  UpdateWords();
+};
+
+function UpdateChars() {
   // determine new number
   const numberOfChar = textareaEl.value.length;
 
@@ -12,7 +32,7 @@ function updateChars() {
   charactersNumEl.textContent = numberOfChar;
 }
 
-function updateX() {
+function UpdateX() {
   // determine new number of char used
   const numberOfChar = textareaEl.value.length;
 
@@ -32,7 +52,7 @@ function updateX() {
   }
 }
 
-function updateLinkedIn() {
+function UpdateLinkedIn() {
   // determine new number of char used
   const numberOfChar = textareaEl.value.length;
 
@@ -52,24 +72,19 @@ function updateLinkedIn() {
   }
 }
 
-function updateWords() {
-  // determine new number
-  const numberOfChar = textareaEl.value.length;
+function UpdateWords() {
+  // find number of words in string textarea
+  const numberOfWords = WordCount(textareaEl.value);
 
   // set new characters amount
-  wordsNumEl.textContent = numberOfChar;
+  wordsNumEl.textContent = numberOfWords;
 }
 
-textareaEl.addEventListener("input", function () {
-  //update number of chars
-  updateChars();
+function WordCount(str) {
+  return str.split(" ").filter(function (n) {
+    return n != "";
+  }).length;
+}
 
-  //update number of chars
-  updateX();
-
-  //update number of chars
-  updateLinkedIn();
-
-  //update number of chars
-  //updateWords();
-});
+// main
+textareaEl.addEventListener("input", InputHandler);
